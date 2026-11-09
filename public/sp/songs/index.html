@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Netflix Previewer — Trailer Evaluation Widget</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    html, body {
+      width: 100%;
+      height: 100%;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: transparent;
+      color: #ffffff;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      -webkit-font-smoothing: antialiased;
+    }
+    
+    .widget-card {
+      width: 100%;
+      height: 100%;
+      background: #141414;
+      border-radius: 16px;
+      padding: 12px 14px;
+      border: 1.5px solid rgba(229, 9, 20, 0.45);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.55), 0 0 16px rgba(229, 9, 20, 0.2);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 7px;
+    }
+
+    /* INSTRUCTION BANNER */
+    .instruction-banner {
+      background: rgba(229, 9, 20, 0.12);
+      border: 1px solid rgba(229, 9, 20, 0.4);
+      border-radius: 8px;
+      padding: 6px 11px;
+      font-size: 11.5px;
+      font-weight: 600;
+      color: #ff4d56;
+      text-align: center;
+      line-height: 1.4;
+    }
+
+    /* TRAILER ROW */
+    .song-row {
+      background: #1e1e1e;
+      border-radius: 12px;
+      padding: 9px 11px;
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      border: 1px solid #2a2a2a;
+    }
+
+    .vinyl-container {
+      width: 64px;
+      height: 44px;
+      position: relative;
+      flex-shrink: 0;
+    }
+
+    .vinyl-disc {
+      width: 100%;
+      height: 100%;
+      border-radius: 6px;
+      background: #0d0d0d;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      border: 1.5px solid #2c2c2c;
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+
+    .vinyl-disc.playing {
+      border-color: #E50914;
+      box-shadow: 0 0 14px rgba(229, 9, 20, 0.65);
+    }
+
+    .song-cover {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 2;
+    }
+
+    .netflix-n-tag {
+      position: absolute;
+      top: 3px;
+      left: 4px;
+      z-index: 3;
+      background: #E50914;
+      color: #ffffff;
+      font-size: 8px;
+      font-weight: 900;
+      padding: 1px 3.5px;
+      border-radius: 2px;
+      letter-spacing: 0.3px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.7);
+    }
+
+    .song-info {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .song-name {
+      font-size: 14.5px;
+      font-weight: 700;
+      color: #ffffff;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .song-artist-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .badge-preview {
+      font-size: 9px;
+      font-weight: 800;
+      color: #ffffff;
+      background: #E50914;
+      padding: 2px 5px;
+      border-radius: 3px;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+      flex-shrink: 0;
+    }
+
+    .song-artist {
+      font-size: 11.5px;
+      color: #b3b3b3;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* PLAY BUTTON */
+    .play-btn {
+      width: 39px;
+      height: 39px;
+      background: #E50914;
+      border: none;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: transform 0.15s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+      box-shadow: 0 4px 14px rgba(229, 9, 20, 0.45);
+      outline: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .play-btn:active { transform: scale(0.92); }
+    .play-btn:hover { transform: scale(1.06); background: #f40612; }
+    
+    .play-btn svg {
+      width: 18px;
+      height: 18px;
+      fill: #ffffff;
+      display: block;
+    }
+
+    /* QUESTIONS / STAR RATING */
+    .questions-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      transition: opacity 0.3s;
+      opacity: 0.35;
+      pointer-events: none;
+    }
+
+    .questions-wrap.unlocked {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .question-block {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .question-title {
+      font-size: 12px;
+      font-weight: 600;
+      color: #e0e0e0;
+    }
+
+    .yn-row {
+      display: flex;
+      gap: 6px;
+    }
+
+    .yn-btn {
+      flex: 1;
+      background: #242424;
+      border: 1px solid #333333;
+      border-radius: 8px;
+      padding: 8px 0;
+      color: #ffffff;
+      font-size: 12.5px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: inherit;
+      outline: none;
+      -webkit-tap-highlight-color: transparent;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 3px;
+    }
+
+    .yn-btn .star-char {
+      color: #f5c518;
+      font-size: 13px;
+    }
+
+    .yn-btn.selected {
+      background: #E50914;
+      color: #ffffff;
+      border-color: #E50914;
+      font-weight: 800;
+      box-shadow: 0 2px 10px rgba(229, 9, 20, 0.45);
+    }
+
+    .yn-btn.selected .star-char {
+      color: #ffffff;
+    }
+
+    /* FINISH BUTTON */
+    .finish-btn {
+      width: 100%;
+      background: #2a2a2a;
+      border: none;
+      border-radius: 999px;
+      padding: 10px;
+      color: #777777;
+      font-size: 13px;
+      font-weight: 800;
+      cursor: not-allowed;
+      transition: all 0.2s;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      outline: none;
+    }
+
+    .finish-btn.active {
+      background: #E50914;
+      color: #ffffff;
+      cursor: pointer;
+      box-shadow: 0 4px 16px rgba(229, 9, 20, 0.5);
+    }
+    .finish-btn.active:hover { transform: scale(1.01); background: #f40612; }
+
+    /* SUCCESS CARD */
+    .success-card {
+      display: none;
+      background: rgba(229, 9, 20, 0.12);
+      border: 1.5px solid #E50914;
+      border-radius: 14px;
+      padding: 20px 16px;
+      text-align: center;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      height: 100%;
+      flex: 1;
+      margin: auto 0;
+      animation: fadeIn 0.25s ease-out;
+      box-shadow: 0 4px 16px rgba(229, 9, 20, 0.15);
+    }
+
+    .success-card.show { display: flex !important; }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .success-icon {
+      width: 32px;
+      height: 32px;
+      background: #E50914;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .success-icon svg { width: 18px; height: 18px; stroke: #fff; }
+
+    .success-title { font-size: 14px; font-weight: 700; color: #ffffff; }
+    .received-label { font-size: 11px; color: #b3b3b3; text-transform: uppercase; letter-spacing: 0.5px; }
+    .received-val { font-size: 22px; font-weight: 800; color: #E50914; }
+
+    .progress-head { margin-bottom: 10px; }
+    .progress-top {
+      display: flex; align-items: center; justify-content: space-between;
+      font-size: 11px; font-weight: 700; letter-spacing: .4px;
+      text-transform: uppercase; color: #b3b3b3; margin-bottom: 6px;
+    }
+    .progress-earned { color: #E50914; font-size: 12px; }
+    .progress-track { height: 6px; background: #2a2a2a; border-radius: 99px; overflow: hidden; }
+    .progress-fill {
+      height: 100%; width: 0%; border-radius: 99px; background: #E50914;
+      box-shadow: 0 0 10px rgba(229, 9, 20, .6); transition: width .5s ease;
+    }
+
+    @keyframes earned-bump {
+      0% { transform: scale(1); }
+      40% { transform: scale(1.25); color: #ff4d56; }
+      100% { transform: scale(1); }
+    }
+    .progress-earned.bump { animation: earned-bump .45s ease; }
+    .progress-earned { display: inline-block; transition: color .3s; }
+
+    .earn-float {
+      position: absolute;
+      right: 4px;
+      top: -6px;
+      font-size: 13px;
+      font-weight: 800;
+      color: #ff4d56;
+      text-shadow: 0 0 8px rgba(229, 9, 20, .8);
+      animation: float-up 1s ease-out forwards;
+      pointer-events: none;
+      white-space: nowrap;
+    }
+    @keyframes float-up {
+      from { opacity: 0; transform: translateY(6px); }
+      25% { opacity: 1; }
+      to { opacity: 0; transform: translateY(-18px); }
+    }
+    .progress-top { position: relative; }
+  </style>
+
+</head>
+<body>
+
+  <div class="widget-card">
+
+    <!-- PROGRESS -->
+    <div class="progress-head">
+      <div class="progress-top">
+        <span id="progressLabel">Trailer 1 of 4</span>
+        <span class="progress-earned" id="progressEarned">Earned $0.00</span>
+      </div>
+      <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+    </div>
+
+    <!-- INSTRUCTION BANNER -->
+    <div class="instruction-banner" id="instructionBanner">
+      🎬 Press <strong>PLAY</strong> to preview the trailer audio/clip and unlock your 1–5★ rating.
+    </div>
+
+    <!-- TRAILER ROW -->
+    <div class="song-row" id="songCard">
+      <div class="vinyl-container">
+        <div class="vinyl-disc" id="vinylDisc">
+          <span class="netflix-n-tag">N</span>
+          <img class="song-cover" id="songCover" src="covers/cover1.jpg" alt="Thumbnail">
+        </div>
+      </div>
+
+      <div class="song-info">
+        <div class="song-name" id="songName">Stranger Things: Season 5</div>
+        <div class="song-artist-row">
+          <span class="badge-preview">TRAILER</span>
+          <span class="song-artist" id="songArtist">Netflix Original Series</span>
+        </div>
+      </div>
+
+      <button class="play-btn" id="playBtn" type="button" aria-label="Play">
+        <svg id="playIcon" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+      </button>
+    </div>
+
+    <!-- QUESTIONS (1 TO 5 STARS RATING) -->
+    <div class="questions-wrap" id="questionsWrap">
+      <div class="question-block">
+        <p class="question-title" id="q1Title">Rate this trailer &amp; thumbnail (1 to 5 stars):</p>
+        <div class="yn-row" id="starRow">
+          <button type="button" class="yn-btn star-opt" data-star="1"><span class="star-char">★</span> 1</button>
+          <button type="button" class="yn-btn star-opt" data-star="2"><span class="star-char">★</span> 2</button>
+          <button type="button" class="yn-btn star-opt" data-star="3"><span class="star-char">★</span> 3</button>
+          <button type="button" class="yn-btn star-opt" data-star="4"><span class="star-char">★</span> 4</button>
+          <button type="button" class="yn-btn star-opt" data-star="5"><span class="star-char">★</span> 5</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- FINISH BTN -->
+    <button class="finish-btn" id="finishBtn" disabled>SUBMIT RATING &amp; EARN</button>
+
+    <!-- SUCCESS CARD -->
+    <div class="success-card" id="successCard">
+      <div class="success-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="20 6 9 17 4 12"></polyline>
+        </svg>
+      </div>
+      <div class="success-title">Trailer Rating Logged!</div>
+      <div class="received-label">Balance Credited</div>
+      <div class="received-val" id="rewardAmount">+$52.40</div>
+    </div>
+
+  </div>
+
+  <script>
+    var SONGS = [
+      {
+        name: 'Stranger Things: Season 5',
+        artist: 'Netflix Original Series • Teaser',
+        cover: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='100' viewBox='0 0 160 100'><defs><linearGradient id='g1' x1='0' y1='0' x2='1' y2='1'><stop offset='0%' stop-color='%234a0409'/><stop offset='100%' stop-color='%230b0b0b'/></linearGradient></defs><rect width='160' height='100' fill='url(%23g1)'/><circle cx='80' cy='50' r='36' fill='%23E50914' opacity='0.22'/><text x='80' y='52' text-anchor='middle' fill='%23ffffff' font-family='Arial,sans-serif' font-weight='900' font-size='15' letter-spacing='1'>STRANGER</text><text x='80' y='69' text-anchor='middle' fill='%23E50914' font-family='Arial,sans-serif' font-weight='900' font-size='13' letter-spacing='2'>THINGS 5</text></svg>",
+        src: '/sp/songs/song1.mp3',
+        reward: 52.40
+      },
+      {
+        name: 'Squid Game: The Final Round',
+        artist: 'Netflix Original Series • Preview',
+        cover: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='100' viewBox='0 0 160 100'><defs><linearGradient id='g2' x1='0' y1='0' x2='1' y2='1'><stop offset='0%' stop-color='%233d0620'/><stop offset='100%' stop-color='%230a0a0a'/></linearGradient></defs><rect width='160' height='100' fill='url(%23g2)'/><text x='80' y='45' text-anchor='middle' fill='%23ff1f7a' font-family='Arial,sans-serif' font-weight='900' font-size='17' letter-spacing='2'>○ △ □</text><text x='80' y='68' text-anchor='middle' fill='%23ffffff' font-family='Arial,sans-serif' font-weight='900' font-size='14' letter-spacing='1'>SQUID GAME</text></svg>",
+        src: '/sp/songs/song2.mp3',
+        reward: 56.80
+      },
+      {
+        name: 'Wednesday: Season 2',
+        artist: 'Netflix Original Series • First Look',
+        cover: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='100' viewBox='0 0 160 100'><defs><linearGradient id='g3' x1='0' y1='0' x2='1' y2='1'><stop offset='0%' stop-color='%231f0c3d'/><stop offset='100%' stop-color='%23090909'/></linearGradient></defs><rect width='160' height='100' fill='url(%23g3)'/><text x='80' y='52' text-anchor='middle' fill='%23ffffff' font-family='Georgia,serif' font-weight='900' font-size='16' letter-spacing='1.5'>WEDNESDAY</text><text x='80' y='70' text-anchor='middle' fill='%23b794f4' font-family='Arial,sans-serif' font-weight='800' font-size='11' letter-spacing='2'>SEASON II</text></svg>",
+        src: '/sp/songs/song3.mp3',
+        reward: 54.20
+      },
+      {
+        name: 'The Electric State',
+        artist: 'Netflix Original Film • Official Trailer',
+        cover: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='100' viewBox='0 0 160 100'><defs><linearGradient id='g4' x1='0' y1='0' x2='1' y2='1'><stop offset='0%' stop-color='%23421805'/><stop offset='100%' stop-color='%230a0a0a'/></linearGradient></defs><rect width='160' height='100' fill='url(%23g4)'/><text x='80' y='48' text-anchor='middle' fill='%23f6ad55' font-family='Arial,sans-serif' font-weight='900' font-size='13' letter-spacing='1.5'>THE ELECTRIC</text><text x='80' y='66' text-anchor='middle' fill='%23ffffff' font-family='Arial,sans-serif' font-weight='900' font-size='15' letter-spacing='2'>STATE</text></svg>",
+        src: '/sp/songs/song4.mp3',
+        reward: 51.40
+      }
+    ];
+
+    var earnedTotal = 0;
+
+    var host = window.location.hostname.toLowerCase();
+    var isDevelopment = host === 'localhost'
+      || host === '127.0.0.1'
+      || host.indexOf('id-preview--') === 0
+      || host.endsWith('-dev.lovable.app')
+      || host.endsWith('.lovableproject.com')
+      || host.endsWith('.sandbox.lovable.dev')
+      || (function () {
+        var urls = [window.location.search, document.referrer];
+        try { urls.push(window.parent.location.search); } catch (e) {}
+        try { urls.push(window.top.location.search); } catch (e) {}
+        return urls.some(function (u) { return /[?&]dev=1(&|$)/.test(u || ''); });
+      })();
+
+    var songIndex = 0;
+    var totalDone = 0;
+    var isPlaying = false;
+    var audioEl = null;
+    var songUnlocked = false;
+    var simInterval = null;
+    var simSeconds = 10;
+    var q1Answer = null;
+
+    var rewardSound = new Audio('/sp/songs/reward.mp3');
+    rewardSound.volume = 1.0;
+    rewardSound.load();
+
+    function playRewardSound() {
+      try {
+        rewardSound.currentTime = 0;
+        rewardSound.play().catch(function(e){ console.log(e); });
+      } catch(e){}
+    }
+
+    // DOM Elements
+    var instructionBanner = document.getElementById('instructionBanner');
+    var songCard = document.getElementById('songCard');
+    var vinylDisc = document.getElementById('vinylDisc');
+    var songCover = document.getElementById('songCover');
+    var songName = document.getElementById('songName');
+    var songArtist = document.getElementById('songArtist');
+    var playBtn = document.getElementById('playBtn');
+    var playIcon = document.getElementById('playIcon');
+    var questionsWrap = document.getElementById('questionsWrap');
+    var q1Title = document.getElementById('q1Title');
+    var starBtns = document.querySelectorAll('.star-opt');
+    var finishBtn = document.getElementById('finishBtn');
+    var successCard = document.getElementById('successCard');
+    var rewardAmount = document.getElementById('rewardAmount');
+    var progressLabel = document.getElementById('progressLabel');
+    var progressEarned = document.getElementById('progressEarned');
+    var progressFill = document.getElementById('progressFill');
+
+    function updateProgress() {
+      var current = Math.min(totalDone + 1, SONGS.length);
+      progressLabel.textContent = totalDone >= SONGS.length
+        ? 'All trailers rated'
+        : 'Trailer ' + current + ' of ' + SONGS.length;
+      progressEarned.textContent = 'Earned $' + earnedTotal.toFixed(2);
+      progressFill.style.width = ((totalDone / SONGS.length) * 100) + '%';
+    }
+
+    function celebrateReward(rewardVal) {
+      try { if (navigator.vibrate) navigator.vibrate(80); } catch(e){}
+      var f = document.createElement('span');
+      f.className = 'earn-float';
+      f.textContent = '+$' + rewardVal.toFixed(2);
+      progressEarned.parentElement.appendChild(f);
+      setTimeout(function(){ try { f.remove(); } catch(e){} }, 1100);
+      progressEarned.classList.remove('bump');
+      void progressEarned.offsetWidth;
+      progressEarned.classList.add('bump');
+    }
+
+    function sendBalanceToParent(rewardVal) {
+      var msg = { type: 'sp-add-balance', reward: rewardVal };
+      if (window.parent && window.parent !== window) {
+        window.parent.postMessage(msg, '*');
+      } else if (window.top && window.top !== window) {
+        window.top.postMessage(msg, '*');
+      }
+    }
+
+    function notifyCompletionToTypebot() {
+      var eventName = 'finalizar_musicas';
+      var msg = { type: eventName, name: eventName, event: eventName, finalBalance: 214.80 };
+      
+      try { window.parent.postMessage(msg, '*'); } catch(e){}
+      try { window.top.postMessage(msg, '*'); } catch(e){}
+      try { window.parent.postMessage(eventName, '*'); } catch(e){}
+      try { window.top.postMessage(eventName, '*'); } catch(e){}
+
+      var fallbackMsg = { type: 'sp-completed-evaluations', name: 'sp-completed-evaluations' };
+      try { window.parent.postMessage(fallbackMsg, '*'); } catch(e){}
+      try { window.top.postMessage(fallbackMsg, '*'); } catch(e){}
+    }
+
+    var PLAY_SVG = '<path d="M8 5v14l11-7z"/>';
+    var PAUSE_SVG = '<rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/>';
+
+    function setPlayIcon(playing) {
+      if (playing) {
+        playIcon.innerHTML = PAUSE_SVG;
+        vinylDisc.classList.add('playing');
+      } else {
+        playIcon.innerHTML = PLAY_SVG;
+        vinylDisc.classList.remove('playing');
+      }
+    }
+
+    function unlockQuestions() {
+      songUnlocked = true;
+      questionsWrap.classList.add('unlocked');
+      instructionBanner.innerHTML = '⭐ Preview complete! Select a <strong>1 to 5★ rating</strong> below and tap <strong>SUBMIT RATING & EARN</strong>';
+      checkReady();
+    }
+
+    function startCountdown() {
+      if (simInterval) return;
+      simInterval = setInterval(function() {
+        if (!isPlaying) return;
+        simSeconds--;
+        if (simSeconds <= 0) {
+          clearInterval(simInterval);
+          simInterval = null;
+          unlockQuestions();
+        } else {
+          if (!songUnlocked) {
+            instructionBanner.innerHTML = '🎬 Previewing trailer (' + simSeconds + 's remaining) to unlock 1–5★ rating...';
+          }
+        }
+      }, 1000);
+    }
+
+    function loadSong() {
+      var song = SONGS[songIndex % SONGS.length];
+      songName.textContent = song.name;
+      songArtist.textContent = song.artist;
+      songCover.src = song.cover;
+      q1Title.textContent = 'Rate "' + song.name + '" & its thumbnail (1 to 5 stars):';
+
+      if (audioEl) {
+        try { audioEl.pause(); } catch(e){}
+        audioEl.src = '';
+        audioEl = null;
+      }
+
+      isPlaying = false;
+      songUnlocked = false;
+      simSeconds = 10;
+      if (simInterval) { clearInterval(simInterval); simInterval = null; }
+      setPlayIcon(false);
+
+      q1Answer = null;
+      starBtns.forEach(function(b) { b.classList.remove('selected'); });
+      
+      finishBtn.disabled = true;
+      finishBtn.classList.remove('active');
+      finishBtn.style.display = 'block';
+
+      questionsWrap.classList.remove('unlocked');
+      questionsWrap.style.display = 'flex';
+      songCard.style.display = 'flex';
+      instructionBanner.style.display = 'block';
+      instructionBanner.innerHTML = '🎬 Press <strong>PLAY</strong> to preview the trailer clip and unlock your 1–5★ rating.';
+      successCard.classList.remove('show');
+      updateProgress();
+      if (isDevelopment) {
+        unlockQuestions();
+        instructionBanner.innerHTML = '<strong>Development mode:</strong> trailer evaluation unlocked.';
+      }
+    }
+
+    function checkReady() {
+      if (q1Answer !== null && songUnlocked) {
+        finishBtn.disabled = false;
+        finishBtn.classList.add('active');
+      } else {
+        finishBtn.disabled = true;
+        finishBtn.classList.remove('active');
+      }
+    }
+
+    starBtns.forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        starBtns.forEach(function(b) { b.classList.remove('selected'); });
+        this.classList.add('selected');
+        q1Answer = this.getAttribute('data-star');
+        checkReady();
+      });
+    });
+
+    function togglePlay() {
+      var song = SONGS[songIndex % SONGS.length];
+
+      if (!audioEl) {
+        audioEl = new Audio(song.src);
+        audioEl.addEventListener('ended', function() {
+          isPlaying = false;
+          setPlayIcon(false);
+          if (simInterval) { clearInterval(simInterval); simInterval = null; }
+          unlockQuestions();
+        });
+      }
+
+      if (isPlaying) {
+        try { audioEl.pause(); } catch(e){}
+        isPlaying = false;
+        setPlayIcon(false);
+      } else {
+        var clickedAt = Date.now();
+        setTimeout(function() {
+          if (songUnlocked) return;
+          if (!audioEl || audioEl.error || (isPlaying && audioEl.currentTime < 0.5)) {
+            if (Date.now() - clickedAt >= 2800) {
+              try { if (audioEl) audioEl.pause(); } catch(e){}
+              isPlaying = false;
+              setPlayIcon(false);
+              if (simInterval) { clearInterval(simInterval); simInterval = null; }
+              unlockQuestions();
+            }
+          }
+        }, 3000);
+        audioEl.play().then(function() {
+          isPlaying = true;
+          setPlayIcon(true);
+          startCountdown();
+        }).catch(function(err) {
+          console.log("Audio play fallthrough:", err);
+          isPlaying = true;
+          setPlayIcon(true);
+          startCountdown();
+        });
+      }
+    }
+
+    playBtn.addEventListener('click', togglePlay);
+
+    finishBtn.addEventListener('click', function() {
+      if (finishBtn.disabled) return;
+
+      var song = SONGS[songIndex % SONGS.length];
+
+      playRewardSound();
+
+      sendBalanceToParent(song.reward);
+
+      if (audioEl) {
+        try { audioEl.pause(); } catch(e){}
+        audioEl = null;
+      }
+      isPlaying = false;
+
+      totalDone += 1;
+      songIndex += 1;
+      earnedTotal += song.reward;
+      updateProgress();
+      celebrateReward(song.reward);
+
+      instructionBanner.style.display = 'none';
+      songCard.style.display = 'none';
+      questionsWrap.style.display = 'none';
+      finishBtn.style.display = 'none';
+
+      rewardAmount.textContent = '+$' + song.reward.toFixed(2);
+      successCard.classList.add('show');
+
+      setTimeout(function() {
+        if (totalDone < SONGS.length) {
+          loadSong();
+          if (!isDevelopment) togglePlay();
+        } else {
+          notifyCompletionToTypebot();
+          successCard.style.display = 'none';
+          instructionBanner.style.display = 'flex';
+          instructionBanner.style.flexDirection = 'column';
+          instructionBanner.style.alignItems = 'center';
+          instructionBanner.style.justifyContent = 'center';
+          instructionBanner.style.height = '100%';
+          instructionBanner.style.margin = 'auto 0';
+          instructionBanner.style.fontSize = '13px';
+          instructionBanner.style.padding = '16px';
+          instructionBanner.innerHTML = '🎉 <strong style="font-size:15px; margin-bottom:4px;">Daily Limit Reached!</strong>Continue in the chat below to withdraw your <strong>$214.80</strong>.';
+        }
+      }, 800);
+    });
+
+    loadSong();
+  </script>
+</body>
+</html>

