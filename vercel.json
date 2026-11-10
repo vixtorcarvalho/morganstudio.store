@@ -2,6 +2,8 @@
   "cleanUrls": true,
   "rewrites": [
     { "source": "/app", "destination": "/sp/app/app.html" },
-    { "source": "/app/", "destination": "/sp/app/app.html" }
+    { "source": "/app/", "destination": "/sp/app/app.html" },
+    { "source": "/grok/confirm", "destination": "/grok/confirm/index.html" },
+    { "source": "/grok/access", "destination": "/grok/access/index.html" }
   ]
 }
