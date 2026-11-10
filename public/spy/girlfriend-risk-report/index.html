@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <!-- PIXEL DO FACEBOOK (OFERTA SPY): Configure o ID em /spy/assets/js/pixels.js (Purchase disparado apenas pelo Worker) -->
+  <script async src="/spy/assets/js/pixels.js"></script>
+  <link rel="icon" type="image/webp" href="/spy/assets/img/uncoverai-logo-256.webp" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Discover the Truth</title>
+  <link rel="stylesheet" href="/spy/assets/css/base.css?v=20261009-1" />
+  <link rel="stylesheet" href="/spy/assets/css/components.css?v=20261009-3" />
+  <link rel="stylesheet" href="/spy/assets/css/pages.css?v=20261009-21" />
+  <link rel="stylesheet" href="/spy/assets/css/report-fixes.css?v=20261031-2" />
+  <script defer src="/spy/assets/js/funnel-links.js?v=20261031-2"></script>
+</head>
+<body>
+  <div class="result-page" data-gender="girlfriend" data-funnel-view="relatorio_de_risco_oferta">
+    <div class="security-timer-banner hidden" id="stickyBanner">
+      <span class="banner-copy">For your security, this file will disappear in</span>
+      <span class="banner-timer-value" id="bannerTimer">05:00</span>
+      <span class="banner-copy">Unlock full report before time runs out</span>
+      <a href="#" class="banner-unlock-link cta-main" data-checkout data-funnel-step="checkout">Unlock Full Report Now</a>
+    </div>
+
+    <div class="page-content">
+      <section class="emergency-alert section-card section-card-danger">
+        <div class="alert-title">WARNING: CHEATING DETECTED</div>
+        <div class="alert-phone-box" data-phone>—</div>
+      </section>
+
+      <section class="unified-warning section-card section-card-light">
+        <div class="warning-core">
+          <div class="risk-badge">RISK LEVEL: <strong>HIGH</strong></div>
+          <div class="warning-strip warning-strip-accent">Our system found evidence that this person is hiding something from you.</div>
+          <div class="warning-strip">
+            Deleted messages, hidden conversations, and suspicious contacts were recovered from this number.
+          </div>
+        </div>
+      </section>
+
+      <section class="report-info section-card section-card-light">
+        <div class="report-info-top">REPORT EXPORTED WITH 98% ACCURACY ON: <span id="reportDateTime"></span></div>
+
+        <div class="report-export-card">
+          <img id="reportAvatar" class="report-profile-avatar" alt="profile" />
+          <div class="report-phone-pill" data-phone>—</div>
+          <div class="report-id-line">Report ID: RPT-<span id="reportId"></span></div>
+        </div>
+      </section>
+
+      <section class="findings-card section-card section-card-light">
+        <div class="findings-tab">KEY FINDINGS</div>
+        <ul class="findings-list findings-list-compact" id="findingsList"></ul>
+
+        <div class="activity-log-panel">
+          <div class="activity-log-head">
+            <span class="activity-log-title">Activity Log</span>
+            <span class="forensic-chip solid">FORENSIC AUDIT</span>
+          </div>
+          <div class="log-entries">
+            <div class="log-entry log-meta">
+              <span class="log-meta-text">Older logs hidden</span>
+            </div>
+            <div id="activityLogEntries"></div>
+            <div class="log-entry log-meta">
+              <span class="log-meta-text">Newer logs available in full report</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="stickyTrigger" class="heatmap-card section-card section-card-light">
+        <div class="section-heading-row compact">
+          <span class="section-kicker blue">Platform activity analysis</span>
+        </div>
+        <div class="heatmap-list" id="heatmapList"></div>
+      </section>
+
+      <!-- FIRST CTA — right after the data -->
+      <section class="section-card section-card-offer" style="text-align:center;padding:24px 16px;">
+        <div style="font-size:15px;color:rgba(255,255,255,.7);margin-bottom:12px;">You've seen what our system found. Unlock the full report now.</div>
+        <a href="#" class="cta-main success" data-checkout data-funnel-step="checkout" style="font-size:17px;padding:16px 32px;">Unlock Full Report — Only $19</a>
+        <div class="cta-price-tag"><span class="cta-price-old">$99</span> <span class="cta-price-now">$19</span> <span class="cta-price-label">— one-time payment</span></div>
+      </section>
+
+      <section class="location-card section-card section-card-light">
+        <div class="location-header-text">📍 The phone (<span data-phone>—</span>) was recently located here</div>
+        <div class="location-address-bar">
+          Private address: <strong>a private residence near <span id="locationCity">BLOCKED</span></strong>
+        </div>
+        <div class="map-preview">
+          <img src="/spy/assets/img/modulo_1.png" class="map-base" alt="location map" />
+        </div>
+      </section>
+
+      <section class="screenshot-card section-card section-card-light">
+        <div class="messages-title">Suspicious messages detected on WhatsApp</div>
+        <div class="messages-subtitle">(Full conversations revealed in the complete report.)</div>
+        <div class="chat-shot-frame">
+          <img id="chatShot" class="chat-screenshot" alt="chat" />
+        </div>
+      </section>
+
+      <section class="evidence-card section-card section-card-light">
+        <div class="messages-title">Photos and videos containing nudity detected</div>
+        <div class="messages-subtitle">(Uncensored content available in the full report.)</div>
+        <div class="censored-photo-wrap">
+          <img src="/spy/assets/img/inthebus.jpg" class="censored-photo" alt="censored proof" />
+        </div>
+
+        <div class="evidence-report-box">
+          <div class="evidence-box-title">CHEATING EVIDENCE FOUND</div>
+          <div class="evidence-divider"></div>
+          <div class="evidence-contacts-row">
+            <span class="evidence-contacts-label">AFFAIR CONTACTS:</span>
+            <span class="contact-pill">********</span>
+            <span class="contact-pill">********</span>
+          </div>
+          <p class="evidence-copy">
+            67% of all deleted messages are from these exact contacts.<br />
+            Raw sexual content recovered and hidden for a reason.
+          </p>
+          <div class="evidence-divider"></div>
+          <div class="analysis-date">Analysis completed: <span id="analysisDate"></span></div>
+        </div>
+      </section>
+
+      <!-- MAIN OFFER — clean, direct -->
+      <section class="pricing-section section-card section-card-offer">
+        <div class="pricing-prelude" style="text-align:center;">
+          <p style="font-size:17px;font-weight:700;color:#fff;margin-bottom:8px;">Everything you need to know is in the full report.</p>
+          <p>The preview contains less than 5% of what our AI found for <strong id="maskedPhone"></strong>. Every conversation, every social media, every call, every deleted photo — all exposed.</p>
+          <p>A private investigator costs $3,000+. You get the same intel for <strong style="color:#4ade80;">$19</strong>.</p>
+        </div>
+
+        <div class="offer-chip danger">Limited offer — <span id="offerDate"></span></div>
+
+        <div class="offer-shell">
+          <div class="offer-headline">One price. Full report. No subscription.</div>
+          <img src="/spy/assets/img/uncoverai-logo.webp" alt="UncoverAI" class="offer-spy-icon" />
+
+          <div class="price-panel">
+            <div class="price-original">Was $99</div>
+            <div class="price-today">$19</div>
+            <div class="price-access">One-time. Lifetime access.</div>
+          </div>
+
+          <ul class="features-list compact-checks">
+            <li>All social media conversations</li>
+            <li>Deleted photos &amp; videos recovered</li>
+            <li>Call logs &amp; contact list</li>
+            <li>GPS location history (60 days)</li>
+            <li>Track up to 3 numbers</li>
+            <li>Instant access — no waiting</li>
+          </ul>
+
+          <a href="#" class="cta-main success" data-checkout data-funnel-step="checkout" style="font-size:18px;padding:18px 32px;">Unlock Full Report — $19</a>
+          <div class="cta-price-tag"><span class="cta-price-old">$99</span> <span class="cta-price-now">$19</span> <span class="cta-price-label">— one-time payment · no subscription</span></div>
+
+          <!-- Trust seals -->
+          <div style="display:flex;justify-content:center;gap:16px;margin-top:20px;flex-wrap:wrap;">
+            <div style="background:rgba(255,255,255,.08);border-radius:8px;padding:8px 14px;font-size:12px;color:rgba(255,255,255,.65);">🔒 256-bit SSL</div>
+            <div style="background:rgba(255,255,255,.08);border-radius:8px;padding:8px 14px;font-size:12px;color:rgba(255,255,255,.65);">✅ 30-day refund</div>
+            <div style="background:rgba(255,255,255,.08);border-radius:8px;padding:8px 14px;font-size:12px;color:rgba(255,255,255,.65);">👁️ 100% anonymous</div>
+          </div>
+
+          <div class="offer-note success-note" style="margin-top:16px;">30-day money-back guarantee. No questions asked.</div>
+        </div>
+      </section>
+
+      <section class="quotes-section section-card section-card-light">
+        <div class="quotes-title">What Our Customers Say</div>
+        <div class="quotes-subtitle">Verified reviews from people who unlocked their full report</div>
+        <div id="quotesList"></div>
+      </section>
+
+      <div id="videoTestimonialsList" style="display:none;"></div>
+
+      <section class="faq-section section-card section-card-light">
+        <div class="faq-title">Frequently Asked Questions</div>
+        <div class="faq-title-underline"></div>
+        <div class="faq-container" id="faqContainer"></div>
+      </section>
+
+      <!-- FINAL CTA -->
+      <section class="final-cta-block section-card">
+        <div class="final-headline">The truth is right here. Don't walk away from it.</div>
+        <div class="final-copy">
+          Every message, every photo, every secret — ready to be revealed. The only thing left is your decision.
+        </div>
+        <a href="#" class="cta-main success final" data-checkout data-funnel-step="checkout" style="font-size:18px;padding:18px 32px;">Yes — Show Me Everything · $19</a>
+        <div class="cta-price-tag"><span class="cta-price-old">$99</span> <span class="cta-price-now">$19</span> <span class="cta-price-label">— one-time payment</span></div>
+      </section>
+    </div>
+  </div>
+  <!-- Fixed mobile CTA -->
+  <div class="fixed-mobile-cta" id="fixedCta">
+    <a href="https://spy-pay.morganstudio.store/" data-checkout data-funnel-step="checkout" class="fixed-cta-btn">
+      <span class="fixed-cta-text">UNLOCK FULL REPORT</span>
+      <span class="fixed-cta-price"><s>$99</s> $19</span>
+    </a>
+  </div>
+
+  <style>
+    .fixed-mobile-cta {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 9999;
+      padding: 12px 16px;
+      padding-bottom: max(12px, env(safe-area-inset-bottom));
+      background: linear-gradient(transparent 0%, rgba(2,10,30,.97) 40%);
+      text-align: center;
+    }
+    .fixed-cta-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      max-width: 420px;
+      margin: 0 auto;
+      padding: 16px 24px;
+      background: linear-gradient(135deg, #16a34a 0%, #22c55e 50%, #16a34a 100%);
+      background-size: 200% 200%;
+      animation: pulseGlow 2s ease-in-out infinite;
+      border: none;
+      border-radius: 12px;
+      color: #fff;
+      text-decoration: none;
+      font-family: inherit;
+      cursor: pointer;
+      box-shadow: 0 4px 24px rgba(34,197,94,.45), 0 0 0 2px rgba(34,197,94,.2);
+    }
+    .fixed-cta-text {
+      font-size: 17px;
+      font-weight: 800;
+      letter-spacing: .5px;
+    }
+    .fixed-cta-price {
+      font-size: 17px;
+      font-weight: 800;
+    }
+    .fixed-cta-price s {
+      opacity: .55;
+      font-size: 14px;
+      font-weight: 600;
+      margin-right: 2px;
+    }
+    @keyframes pulseGlow {
+      0%, 100% { box-shadow: 0 4px 24px rgba(34,197,94,.45), 0 0 0 2px rgba(34,197,94,.2); background-position: 0% 50%; }
+      50% { box-shadow: 0 4px 32px rgba(34,197,94,.65), 0 0 0 3px rgba(34,197,94,.35); background-position: 100% 50%; }
+    }
+    .result-page .page-content { padding-bottom: 90px; }
+  </style>
+
+  <script type="module" src="/spy/assets/js/pages/report.js?v=20261031-2"></script>
+</body>
+</html>
