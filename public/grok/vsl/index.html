@@ -467,6 +467,26 @@ var headerBal=document.getElementById('header-balance');
 var ctaBtn=document.getElementById('btn-cta'),ctaText=document.getElementById('cta-text');
 var elapsedSec=0;
 
+// Modo de teste / preview rápido via URL (?pitch=true ou ?unlock=1)
+if(params.get('pitch')==='true'||params.get('pitch')==='1'||params.get('unlock')==='1'||params.get('test')==='1'||params.get('preview')==='black'){
+  pitchReached=true;
+  showActivation();
+}
+
+// Sincronização direta com o SmartPlayer do VTurb (converteai)
+window.addEventListener('message', function(event) {
+  try {
+    var data = typeof event.data === 'string' ? JSON.parse(event.data) : event.data;
+    if (data && (data.event === 'timeupdate' || data.type === 'timeupdate') && data.currentTime) {
+      elapsedSec = Math.floor(data.currentTime);
+      if (!pitchReached && elapsedSec >= PITCH_TIME) {
+        pitchReached = true;
+        showActivation();
+      }
+    }
+  } catch (e) {}
+});
+
 setInterval(function(){
   elapsedSec++;
   if(vPct>=100){if(!videoComplete){videoComplete=true;onVideoComplete()}return}
