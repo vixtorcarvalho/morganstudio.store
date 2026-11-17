@@ -65,3 +65,15 @@ const GROK_META_PIXEL_ID = '1165971002423316';
     console.warn('[Grok Pixel Error]', e);
   }
 })();
+
+// ─── UTMIFY PIXEL TRACKER ───
+(function initUtmifyPixel() {
+  if (window.__utmifyPixelLoaded) return;
+  window.__utmifyPixelLoaded = true;
+  window.pixelId = "6afba67365223ad0fe709482";
+  var s = document.createElement("script");
+  s.src = "https://cdn.utmify.com.br/scripts/pixel/pixel.js";
+  s.async = true;
+  s.defer = true;
+  document.head.appendChild(s);
+})();
