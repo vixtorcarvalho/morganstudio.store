@@ -10,7 +10,7 @@
  *   disparado exclusivamente pelo Worker (spy-pay.morganstudio.store) via
  *   CAPI + Browser no momento da aprovação real do pagamento.
  * ============================================================================ */
-const SPY_META_PIXEL_ID = 'SEU_PIXEL_ID_SPY_AQUI';
+const SPY_META_PIXEL_ID = '1608388654663900';
 
 (function initSpyMetaPixel() {
   if (window.__spyPixelInitialized) return;
