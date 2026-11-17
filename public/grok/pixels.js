@@ -10,7 +10,7 @@
  *   disparado exclusivamente pelo Worker (grok-pay.morganstudio.store) via
  *   CAPI + Browser no momento da aprovação real do pagamento na Stripe.
  * ============================================================================ */
-const GROK_META_PIXEL_ID = '1662586128645199';
+const GROK_META_PIXEL_ID = '1008921108235146';
 
 (function initGrokMetaPixel() {
   if (window.__grokPixelInitialized) return;
