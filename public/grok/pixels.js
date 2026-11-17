@@ -10,14 +10,14 @@
  *   disparado exclusivamente pelo Worker (grok-pay.morganstudio.store) via
  *   CAPI + Browser no momento da aprovação real do pagamento na Stripe.
  * ============================================================================ */
-const GROK_META_PIXEL_ID = 'SEU_PIXEL_ID_GROK_AQUI';
+const GROK_META_PIXEL_ID = '1165971002423316';
 
 (function initGrokMetaPixel() {
   if (window.__grokPixelInitialized) return;
   window.__grokPixelInitialized = true;
 
   const pixelId = (window.GROK_META_PIXEL_ID || GROK_META_PIXEL_ID || '').trim();
-  if (!pixelId || pixelId === 'SEU_PIXEL_ID_GROK_AQUI' || !/^\d+$/.test(pixelId)) {
+  if (!pixelId || !/^\d+$/.test(pixelId)) {
     return;
   }
 
