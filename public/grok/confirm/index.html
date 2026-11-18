@@ -368,11 +368,12 @@
       if (cid && pm) {
         try {
           const workerHost = 'https://grok-pay.morganstudio.store';
+          const up1Cents = parseInt(params.get('up1_cents') || params.get('price_cents') || (currency === 'brl' ? '2790' : '500'), 10);
           const chargePayload = {
             customer_id: cid,
             payment_method_id: pm,
             upsell_number: 1,
-            price_cents: 500, // $5.00 USD
+            price_cents: up1Cents,
             acc: acc,
             email: email,
             name: nameParam,
@@ -393,7 +394,8 @@
           if (result && (result.status === 'succeeded' || result.ok)) {
             try {
               if (typeof fbq === 'function') {
-                fbq('trackCustom', 'UpsellPurchase', { value: 5.00, currency: 'USD' });
+                const chargedVal = (result.amount ? result.amount : up1Cents) / 100;
+                fbq('trackCustom', 'UpsellPurchase', { value: chargedVal, currency: (result.currency || currency).toUpperCase() });
               }
             } catch (e) {}
           }
